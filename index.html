@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LOCABAG Automobiles</title>
+  <style>
+    :root{--brand:#FF6600} body{margin:0;background:#0b0b0b;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    .wrap{max-width:1120px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;background:rgba(11,11,11,.85);backdrop-filter:blur(6px);border-bottom:1px solid #262626;z-index:10}
+    nav a{color:#cfcfcf;text-decoration:none;margin-left:16px} nav a:hover{color:#fff}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;border-radius:.8rem;padding:.6rem .9rem;font-weight:600;border:1px solid #2f2f2f;background:#1f1f1f;color:#fff}
+    .btn.primary{background:var(--brand);border-color:var(--brand)}
+    .grid{display:grid;gap:24px} .grid.cols-3{grid-template-columns:repeat(3,1fr)} @media(max-width:960px){.grid.cols-3{grid-template-columns:repeat(2,1fr)}} @media(max-width:640px){.grid.cols-3{grid-template-columns:1fr}}
+    .card{background:#121212;border:1px solid #262626;border-radius:16px;overflow:hidden}
+    .p3{padding:12px} .p5{padding:20px}
+    .title{font-size:20px;font-weight:600} .price{color:var(--brand);font-weight:700;white-space:nowrap}
+    .meta{color:#cfcfcf;font-size:14px}
+    .carousel{position:relative} .carousel img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:16/9}
+    .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.15);padding:.35rem .6rem;border-radius:.6rem}
+    .nav.l{left:.5rem} .nav.r{right:.5rem} .dots{position:absolute;bottom:8px;left:0;right:0;display:flex;justify-content:center;gap:6px}
+    .dot{width:24px;height:6px;border-radius:999px;background:rgba(255,255,255,.35)} .dot.active{background:var(--brand)}
+    footer{border-top:1px solid #262626;color:#bdbdbd;font-size:12px;margin-top:48px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;padding:10px 24px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <img src="assets/logo.png" alt="LOCABAG" style="height:40px"/>
+        <span style="color:#cfcfcf">Automobiles</span>
+      </div>
+      <nav>
+        <a href="#catalogue">Catalogue</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="wrap" style="padding-top:28px">
+    <h1 style="font-size:40px;line-height:1.1;margin:0">LOCABAG Automobiles</h1>
+    <p style="color:#cfcfcf;font-size:18px;max-width:720px;margin-top:10px">Achat – vente – importation – conseils. Propositions claires, accompagnement de la vérification à la livraison, en France et en Allemagne.</p>
+    <div style="display:flex;gap:10px;margin-top:16px">
+      <a href="#catalogue" class="btn primary">Voir les véhicules</a>
+      <a href="#contact" class="btn">Demander une proposition</a>
+    </div>
+  </section>
+
+  <section id="catalogue" class="wrap" style="padding-top:20px">
+    <div style="display:flex;align-items:end;justify-content:space-between">
+      <div>
+        <h2 style="font-size:28px;margin:0 0 6px 0">Catalogue</h2>
+        <div style="color:#cfcfcf">Sélection récente. Fiches PDF et galerie photos.</div>
+      </div>
+      <a href="#contact" style="color:var(--brand);text-decoration:none;font-size:14px">Vous cherchez un modèle précis ?</a>
+    </div>
+
+    <div class="grid cols-3" style="margin-top:18px">
+      <!-- Q3 -->
+      <div class="card">
+        <div class="p3">
+          <div class="carousel" data-key="q3">
+            <img src="assets/q3-1.jpg" alt="Audi Q3 45 TFSI e">
+            <button class="nav l" aria-label="Précédent">‹</button>
+            <button class="nav r" aria-label="Suivant">›</button>
+            <div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          </div>
+        </div>
+        <div class="p5">
+          <div style="display:flex;justify-content:space-between;gap:8px">
+            <div class="title">Audi Q3 Sportback 45 TFSI e S tronic</div>
+            <div class="price">35 742,36 € TTC</div>
+          </div>
+          <div class="meta" style="margin-top:6px">05/2022 • 86 900 km • Hybride 245 ch – S tronic</div>
+          <div style="display:flex;gap:10px;margin-top:12px">
+            <a class="btn primary" href="#contact">Demander la fiche</a>
+            <a class="btn" href="docs/q3.pdf" target="_blank">Télécharger PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- G500 -->
+      <div class="card">
+        <div class="p3">
+          <div class="carousel" data-key="g500">
+            <img src="assets/g500-1.jpg" alt="Mercedes G 500">
+            <button class="nav l" aria-label="Précédent">‹</button>
+            <button class="nav r" aria-label="Suivant">›</button>
+            <div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          </div>
+        </div>
+        <div class="p5">
+          <div style="display:flex;justify-content:space-between;gap:8px">
+            <div class="title">Mercedes‑Benz G 500 AMG Line Manufaktur</div>
+            <div class="price">134 960 € TTC</div>
+          </div>
+          <div class="meta" style="margin-top:6px">02/2020 • 67 600 km • V8 422 ch – 9G‑Tronic</div>
+          <div style="display:flex;gap:10px;margin-top:12px">
+            <a class="btn primary" href="#contact">Demander la fiche</a>
+            <a class="btn" href="docs/g500.pdf" target="_blank">Télécharger PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vivaro -->
+      <div class="card">
+        <div class="p3">
+          <div class="carousel" data-key="vivaro">
+            <img src="assets/vivaro-1.jpg" alt="Opel Vivaro L2H1">
+            <button class="nav l" aria-label="Précédent">‹</button>
+            <button class="nav r" aria-label="Suivant">›</button>
+            <div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          </div>
+        </div>
+        <div class="p5">
+          <div style="display:flex;justify-content:space-between;gap:8px">
+            <div class="title">Opel Vivaro B L2H1 2,9t • 125 ch</div>
+            <div class="price">12 422,60 € TTC</div>
+          </div>
+          <div class="meta" style="margin-top:6px">10/2017 • 126 900 km • 1.6 CDTI – BVM6</div>
+          <div style="display:flex;gap:10px;margin-top:12px">
+            <a class="btn primary" href="#contact">Demander la fiche</a>
+            <a class="btn" href="docs/vivaro.pdf" target="_blank">Télécharger PDF</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap" style="padding:28px 24px 40px">
+    <h2 style="font-size:28px;margin:0 0 8px 0">Contact</h2>
+    <div style="color:#cfcfcf;margin-bottom:8px">Dites‑moi ce que vous recherchez. Réponse rapide.</div>
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px">
+      <form onsubmit="event.preventDefault()">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <input placeholder="Nom" required style="background:#121212;border:1px solid #262626;border-radius:12px;padding:12px;color:#fff">
+          <input placeholder="Téléphone" style="background:#121212;border:1px solid #262626;border-radius:12px;padding:12px;color:#fff">
+          <input type="email" placeholder="Email" required style="grid-column:1/3;background:#121212;border:1px solid #262626;border-radius:12px;padding:12px;color:#fff">
+          <textarea rows="5" placeholder="Votre message" required style="grid-column:1/3;background:#121212;border:1px solid #262626;border-radius:12px;padding:12px;color:#fff"></textarea>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:12px">
+          <button class="btn primary" type="submit">Envoyer</button>
+          <span style="font-size:12px;color:#9a9a9a">En cliquant, vous acceptez d'être recontacté par LOCABAG.</span>
+        </div>
+      </form>
+      <div class="card p5">
+        <div class="title" style="margin-bottom:8px">Coordonnées</div>
+        <div class="meta">Bas‑Rhin (67), France – interventions transfrontalières Allemagne.</div>
+        <div style="margin-top:8px">📞 +33 6 87 57 52 87</div>
+        <div>✉️ locabag@orange.fr</div>
+        <div>📍 4 Grand Rue, 67360 Durrenbach</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap" style="padding:18px 24px">© <span id="y"></span> LOCABAG Automobiles — Mentions légales • Confidentialité.</div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    const sets = {
+      q3: ["assets/q3-1.jpg", "assets/q3-2.jpg", "assets/q3-3.jpg", "assets/q3-4.jpg", "assets/q3-5.jpg", "assets/q3-6.jpg", "assets/q3-7.jpg", "assets/q3-8.jpg"],
+      g500: ["assets/g500-1.jpg", "assets/g500-2.jpg", "assets/g500-3.jpg", "assets/g500-4.jpg", "assets/g500-5.jpg", "assets/g500-6.jpg", "assets/g500-7.jpg", "assets/g500-8.jpg"],
+      vivaro: ["assets/vivaro-1.jpg", "assets/vivaro-2.jpg", "assets/vivaro-3.jpg", "assets/vivaro-4.jpg", "assets/vivaro-5.jpg", "assets/vivaro-6.jpg", "assets/vivaro-7.jpg", "assets/vivaro-8.jpg"],
+    };
+
+    document.querySelectorAll('.carousel').forEach(c=>{
+      const key = c.dataset.key;
+      const imgs = sets[key];
+      let idx = 0;
+      const img = c.querySelector('img');
+      const dots = c.querySelectorAll('.dot');
+      const set = (i)=>{ idx = (i+imgs.length)%imgs.length; img.src = imgs[idx]; dots.forEach((d,j)=> d.classList.toggle('active', j===idx)); };
+      c.querySelector('.nav.l').addEventListener('click', ()=> set(idx-1));
+      c.querySelector('.nav.r').addEventListener('click', ()=> set(idx+1));
+    });
+  </script>
+</body>
+</html>
