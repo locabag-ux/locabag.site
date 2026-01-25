@@ -21,6 +21,19 @@
     .nav.l{left:.5rem} .nav.r{right:.5rem} .dots{position:absolute;bottom:8px;left:0;right:0;display:flex;justify-content:center;gap:6px}
     .dot{width:24px;height:6px;border-radius:999px;background:rgba(255,255,255,.35)} .dot.active{background:var(--brand)}
     footer{border-top:1px solid #262626;color:#bdbdbd;font-size:12px;margin-top:48px}
+    .carousel{position:relative; overflow:hidden;}
+.carousel img{width:100%; display:block; height:auto;}
+
+.carousel .nav{
+  position:absolute; top:50%; transform:translateY(-50%);
+  border:0; cursor:pointer; user-select:none;
+  font-size:38px; line-height:1;
+  padding:10px 14px; border-radius:10px;
+  background:rgba(0,0,0,.45); color:#fff;
+}
+.carousel .nav.l{left:10px;}
+.carousel .nav.r{right:10px;}
+.carousel .nav:hover{background:rgba(0,0,0,.65);}
   </style>
 </head>
 <body>
@@ -82,7 +95,11 @@
       <!-- G500 -->
       <div class="card">
         <div class="p3">
-          <div class="carousel" data-key="g500">
+          <div class="carousel" id="g500">
+  <button class="nav l" type="button" aria-label="Photo précédente">❮</button>
+  <img alt="Photos véhicule">
+  <button class="nav r" type="button" aria-label="Photo suivante">❯</button>
+</div>
             <img src="/g500-1.jpg" alt="Mercedes G 500">
             <button class="nav l" aria-label="Précédent">‹</button>
             <button class="nav r" aria-label="Suivant">›</button>
