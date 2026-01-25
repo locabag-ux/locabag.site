@@ -27,7 +27,7 @@
   <header>
     <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;padding:10px 24px">
       <div style="display:flex;align-items:center;gap:10px">
-        <img src="/logo.png" alt="LOCABAG" style="height:40px"/>
+        <img src="assets/logo.png" alt="LOCABAG" style="height:40px"/>
         <span style="color:#cfcfcf">Automobiles</span>
       </div>
       <nav>
@@ -60,7 +60,7 @@
       <div class="card">
         <div class="p3">
           <div class="carousel" data-key="q3">
-            <img src="/q3-1.jpg" alt="Audi Q3 45 TFSI e">
+            <img src="assets/q3-1.jpg" alt="Audi Q3 45 TFSI e">
             <button class="nav l" aria-label="Précédent">‹</button>
             <button class="nav r" aria-label="Suivant">›</button>
             <div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
@@ -82,12 +82,8 @@
       <!-- G500 -->
       <div class="card">
         <div class="p3">
-          <div class="carousel" id="g500">
-  <button class="nav l" type="button" aria-label="Photo précédente">❮</button>
-  <img alt="Photos véhicule">
-  <button class="nav r" type="button" aria-label="Photo suivante">❯</button>
-</div>
-            <img src="/g500-1.jpg" alt="Mercedes G 500">
+          <div class="carousel" data-key="g500">
+            <img src="assets/g500-1.jpg" alt="Mercedes G 500">
             <button class="nav l" aria-label="Précédent">‹</button>
             <button class="nav r" aria-label="Suivant">›</button>
             <div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
@@ -110,7 +106,7 @@
       <div class="card">
         <div class="p3">
           <div class="carousel" data-key="vivaro">
-            <img src="/vivaro-1.jpg" alt="Opel Vivaro L2H1">
+            <img src="assets/vivaro-1.jpg" alt="Opel Vivaro L2H1">
             <button class="nav l" aria-label="Précédent">‹</button>
             <button class="nav r" aria-label="Suivant">›</button>
             <div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
@@ -165,7 +161,7 @@
     document.getElementById('y').textContent = new Date().getFullYear();
 
     const sets = {
-      q3: ["/q3-1.jpg", "/q3-2.jpg", "/q3-3.jpg", "/q3-4.jpg", "/q3-5.jpg", "/q3-6.jpg", "/q3-7.jpg", /q3-8.jpg"],
+      q3: ["assets/q3-1.jpg", "assets/q3-2.jpg", "assets/q3-3.jpg", "assets/q3-4.jpg", "assets/q3-5.jpg", "assets/q3-6.jpg", "assets/q3-7.jpg", "assets/q3-8.jpg"],
       g500: ["assets/g500-1.jpg", "assets/g500-2.jpg", "assets/g500-3.jpg", "assets/g500-4.jpg", "assets/g500-5.jpg", "assets/g500-6.jpg", "assets/g500-7.jpg", "assets/g500-8.jpg"],
       vivaro: ["assets/vivaro-1.jpg", "assets/vivaro-2.jpg", "assets/vivaro-3.jpg", "assets/vivaro-4.jpg", "assets/vivaro-5.jpg", "assets/vivaro-6.jpg", "assets/vivaro-7.jpg", "assets/vivaro-8.jpg"],
     };
