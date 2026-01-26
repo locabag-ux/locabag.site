@@ -237,29 +237,49 @@
     <div class="wrap" style="padding:18px 24px">© <span id="y"></span> LOCABAG Automobiles — Mentions légales • Confidentialité.</div>
   </footer>
 
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
+ <script>
+  document.getElementById('y').textContent = new Date().getFullYear();
 
-    const sets = {
-      q3: ["/q3-1.jpg", "/q3-2.jpg", "/q3-3.jpg", "/q3-4.jpg", "/q3-5.jpg", "/q3-6.jpg", "/q3-7.jpg", "/q3-8.jpg"],
-      g500: ["/g500-1.jpg", "/g500-2.jpg", "/g500-3.jpg", "/g500-4.jpg", "/g500-5.jpg", "/g500-6.jpg", "/g500-7.jpg", "/g500-8.jpg"],
-      vivaro: ["/vivaro-1.jpg", "/vivaro-2.jpg", "/vivaro-3.jpg", "/vivaro-4.jpg", "/vivaro-5.jpg", "/vivaro-6.jpg", "/vivaro-7.jpg", "/vivaro-8.jpg"],      qashqai: ["/qashqai-1.jpg", "/qashqai-2.jpg", "/qashqai-3.jpg", "/qashqai-4.jpg", "/qashqai-5.jpg", "/qashqai-6.jpg", "/qashqai-7.jpg", "/qashqai-8.jpg", "/qashqai-9.jpg", "/qashqai-10.jpg", "/qashqai-11.jpg", "/qashqai-12.jpg", "/qashqai-13.jpg", "/qashqai-14.jpg", "/qashqai-15.jpg", "/qashqai-16.jpg", "/qashqai-17.jpg", "/qashqai-18.jpg", "/qashqai-19.jpg", "/qashqai-20.jpg"],      db9: ["/db9-1.jpg", "/db9-2.jpg", "/db9-3.jpg", "/db9-4.jpg", "/db9-5.jpg", "/db9-6.jpg", "/db9-7.jpg", "/db9-8.jpg", "/db9-9.jpg", "/db9-10.jpg", "/db9-11.jpg", "/db9-12.jpg", "/db9-13.jpg", "/db9-14.jpg"],
+  const sets = {
+    q3: ["/q3-1.jpg", "/q3-2.jpg", "/q3-3.jpg", "/q3-4.jpg", "/q3-5.jpg", "/q3-6.jpg", "/q3-7.jpg", "/q3-8.jpg"],
+    g500: ["/g500-1.jpg", "/g500-2.jpg", "/g500-3.jpg", "/g500-4.jpg", "/g500-5.jpg", "/g500-6.jpg", "/g500-7.jpg", "/g500-8.jpg"],
+    vivaro: ["/vivaro-1.jpg", "/vivaro-2.jpg", "/vivaro-3.jpg", "/vivaro-4.jpg", "/vivaro-5.jpg", "/vivaro-6.jpg", "/vivaro-7.jpg", "/vivaro-8.jpg"],
+    qashqai: ["/qashqai-1.jpg", "/qashqai-2.jpg", "/qashqai-3.jpg", "/qashqai-4.jpg", "/qashqai-5.jpg", "/qashqai-6.jpg", "/qashqai-7.jpg", "/qashqai-8.jpg", "/qashqai-9.jpg", "/qashqai-10.jpg", "/qashqai-11.jpg", "/qashqai-12.jpg", "/qashqai-13.jpg", "/qashqai-14.jpg", "/qashqai-15.jpg", "/qashqai-16.jpg", "/qashqai-17.jpg", "/qashqai-18.jpg", "/qashqai-19.jpg", "/qashqai-20.jpg"],
+    db9: ["/db9-1.jpg", "/db9-2.jpg", "/db9-3.jpg", "/db9-4.jpg", "/db9-5.jpg", "/db9-6.jpg", "/db9-7.jpg", "/db9-8.jpg", "/db9-9.jpg", "/db9-10.jpg", "/db9-11.jpg", "/db9-12.jpg", "/db9-13.jpg", "/db9-14.jpg"],
 
+    // ✅ AJOUT YARIS CROSS (20 photos)
+    yariscross: [
+      "/yariscross-1.jpg","/yariscross-2.jpg","/yariscross-3.jpg","/yariscross-4.jpg","/yariscross-5.jpg",
+      "/yariscross-6.jpg","/yariscross-7.jpg","/yariscross-8.jpg","/yariscross-9.jpg","/yariscross-10.jpg",
+      "/yariscross-11.jpg","/yariscross-12.jpg","/yariscross-13.jpg","/yariscross-14.jpg","/yariscross-15.jpg",
+      "/yariscross-16.jpg","/yariscross-17.jpg","/yariscross-18.jpg","/yariscross-19.jpg","/yariscross-20.jpg"
+    ]
+  };
 
+  document.querySelectorAll('.carousel').forEach(c => {
+    const key = c.dataset.key;
+    const imgs = sets[key];
 
+    // ✅ sécurité: si pas trouvé, on ne plante pas
+    if (!imgs || !imgs.length) return;
+
+    let idx = 0;
+    const img = c.querySelector('img');
+    const dots = c.querySelectorAll('.dot');
+
+    const set = (i) => {
+      idx = (i + imgs.length) % imgs.length;
+      img.src = imgs[idx];
+      if (dots && dots.length) dots.forEach((d, j) => d.classList.toggle('active', j === idx));
     };
 
-    document.querySelectorAll('.carousel').forEach(c=>{
-      const key = c.dataset.key;
-      const imgs = sets[key];
-      let idx = 0;
-      const img = c.querySelector('img');
-      const dots = c.querySelectorAll('.dot');
-      const set = (i)=>{ idx = (i+imgs.length)%imgs.length; img.src = imgs[idx]; dots.forEach((d,j)=> d.classList.toggle('active', j===idx)); };
-      c.querySelector('.nav.l').addEventListener('click', ()=> set(idx-1));
-      c.querySelector('.nav.r').addEventListener('click', ()=> set(idx+1));
-    });
-  </script>
+    c.querySelector('.nav.l')?.addEventListener('click', () => set(idx - 1));
+    c.querySelector('.nav.r')?.addEventListener('click', () => set(idx + 1));
+
+    // ✅ important : initialise l'affichage
+    set(0);
+  });
+</script>
 </body>
 </html>
 
