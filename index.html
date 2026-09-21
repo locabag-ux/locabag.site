@@ -1,316 +1,268 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LOCABAG Automobiles</title>
-  
+  <title>LOCABAG Automobiles — Courtage automobile en Europe</title>
+  <meta name="description" content="LOCABAG recherche, vérifie et sécurise votre achat automobile en France et en Europe, de l'annonce jusqu'à la mise à disposition du véhicule.">
+  <meta name="theme-color" content="#101214">
+  <link rel="preload" href="hero-courtage.webp" as="image" type="image/webp">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23101214'/%3E%3Cpath d='M17 14h10v27h21v9H17z' fill='%23ed6b21'/%3E%3C/svg%3E">
   <style>
-    :root{--brand:#FF6600} body{margin:0;background:#0b0b0b;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-    .wrap{max-width:1120px;margin:0 auto;padding:24px}
-    header{position:sticky;top:0;background:rgba(11,11,11,.85);backdrop-filter:blur(6px);border-bottom:1px solid #262626;z-index:10}
-    nav a{color:#cfcfcf;text-decoration:none;margin-left:16px} nav a:hover{color:#fff}
-    .btn{display:inline-flex;align-items:center;gap:.5rem;border-radius:.8rem;padding:.6rem .9rem;font-weight:600;border:1px solid #2f2f2f;background:#1f1f1f;color:#fff}
-    .btn.primary{background:var(--brand);border-color:var(--brand)}
-    .grid{display:grid;gap:24px} .grid.cols-3{grid-template-columns:repeat(3,1fr)} @media(max-width:960px){.grid.cols-3{grid-template-columns:repeat(2,1fr)}} @media(max-width:640px){.grid.cols-3{grid-template-columns:1fr}}
-    .card{background:#121212;border:1px solid #262626;border-radius:16px;overflow:hidden}
-    .p3{padding:12px} .p5{padding:20px}
-    .title{font-size:20px;font-weight:600} .price{color:var(--brand);font-weight:700;white-space:nowrap}
-    .meta{color:#cfcfcf;font-size:14px}
-    .carousel{position:relative} .carousel img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:16/9}
-    .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.15);padding:.35rem .6rem;border-radius:.6rem;color:#fff;cursor:pointer}
-    .nav.l{left:.5rem} .nav.r{right:.5rem} .dots{position:absolute;bottom:8px;left:0;right:0;display:flex;justify-content:center;gap:6px}
-    .dot{width:24px;height:6px;border-radius:999px;background:rgba(255,255,255,.35)} .dot.active{background:var(--brand)}
-    footer{border-top:1px solid #262626;color:#bdbdbd;font-size:12px;margin-top:48px}
+    :root{--ink:#101214;--ink-2:#181b1f;--paper:#f6f5f2;--white:#fff;--muted:#b9bec5;--muted-dark:#5d636b;--accent:#ed6b21;--accent-dark:#c84f0c;--line:rgba(255,255,255,.12);--radius:22px;--shadow:0 24px 70px rgba(0,0,0,.18)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:84px}
+    body{margin:0;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--paper);font-size:16px;line-height:1.6}
+    a{color:inherit}
+    img{display:block;max-width:100%}
+    button,a{touch-action:manipulation}
+    .container{width:min(1180px,calc(100% - 40px));margin:auto}
+    .eyebrow{display:flex;align-items:center;gap:10px;margin:0 0 16px;color:var(--accent);font-size:.82rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+    .eyebrow:before{content:"";width:28px;height:2px;background:currentColor}
+    h1,h2,h3{line-height:1.08;letter-spacing:-.035em;margin:0}
+    h1{font-size:clamp(2.7rem,6vw,5.5rem);max-width:900px}
+    h2{font-size:clamp(2.2rem,4vw,4rem);max-width:760px}
+    h3{font-size:1.3rem}
+    p{margin:0}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 22px;border:1px solid transparent;border-radius:999px;text-decoration:none;font-weight:800;transition:.2s ease}
+    .button:hover{transform:translateY(-2px)}
+    .button-primary{background:var(--accent);color:#fff;box-shadow:0 12px 30px rgba(237,107,33,.25)}
+    .button-primary:hover{background:#ff7830}
+    .button-ghost{border-color:#c8cdd2;color:var(--ink);background:rgba(255,255,255,.78);backdrop-filter:blur(10px)}
+    .button-ghost:hover{background:#fff;border-color:#9da4ab}
+    .arrow{font-size:1.15em}
+
+    header{position:fixed;inset:0 0 auto;z-index:20;background:rgba(255,255,255,.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(16,18,20,.1);box-shadow:0 8px 30px rgba(20,25,30,.04)}
+    nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:28px;color:var(--ink)}
+    .brand{text-decoration:none;display:flex;align-items:center;gap:12px;line-height:1}
+    .brand-logo{width:58px;height:58px;object-fit:contain}
+    .brand span{color:#515a62;font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+    .navlinks{display:flex;align-items:center;gap:24px}
+    .navlinks>a:not(.button){font-size:.9rem;text-decoration:none;color:#4c555e}
+    .navlinks>a:not(.button):hover{color:var(--ink)}
+    .menu{display:none;color:var(--ink);background:none;border:0;font:inherit;font-weight:800;padding:10px}
+
+    .hero{position:relative;min-height:760px;height:100svh;display:flex;align-items:center;color:var(--ink);background:#eef1f3;overflow:hidden}
+    .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(250,251,252,.99) 0%,rgba(250,251,252,.94) 34%,rgba(250,251,252,.38) 63%,rgba(250,251,252,.08) 100%),linear-gradient(0deg,rgba(245,247,248,.68),transparent 48%),url('hero-courtage.webp') center/cover no-repeat;transform:scale(1.01)}
+    .hero .container{position:relative;z-index:1;padding-top:88px}
+    .hero-copy{max-width:800px}
+    .hero h1 em{font-style:normal;color:var(--accent)}
+    .hero-lead{margin:26px 0 32px;max-width:660px;color:#48535d;font-size:clamp(1.05rem,2vw,1.28rem);line-height:1.65}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+    .hero-proof{position:absolute;z-index:2;left:0;right:0;bottom:0;border-top:1px solid rgba(16,18,20,.1);background:rgba(255,255,255,.9);backdrop-filter:blur(14px)}
+    .proof-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+    .proof{padding:20px 24px;border-right:1px solid rgba(16,18,20,.1)}
+    .proof:first-child{padding-left:0}
+    .proof:last-child{border-right:0}
+    .proof strong{display:block;font-size:1.05rem}
+    .proof span{display:block;color:#68717a;font-size:.86rem;margin-top:3px}
+
+    section{padding:110px 0}
+    .section-intro{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:50px}
+    .section-intro>p{max-width:500px;color:var(--muted-dark);font-size:1.05rem}
+    .advantages{background:#fff}
+    .adv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#dedede;border:1px solid #dedede;border-radius:var(--radius);overflow:hidden}
+    .adv-card{padding:34px;background:#fff;min-height:245px}
+    .num{display:grid;place-items:center;width:46px;height:46px;margin-bottom:30px;border-radius:50%;background:#fff3eb;color:var(--accent-dark);font-weight:900}
+    .adv-card p{margin-top:14px;color:var(--muted-dark)}
+
+    .start{background:#f0f2f4;color:var(--ink);overflow:hidden}
+    .start .section-intro>p{color:var(--muted-dark)}
+    .paths{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .path{position:relative;min-height:320px;padding:42px;border:1px solid #dcdfe2;border-radius:var(--radius);background:#fff;box-shadow:0 16px 46px rgba(25,32,38,.07);overflow:hidden}
+    .path:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-60px;bottom:-70px;background:radial-gradient(circle,var(--accent) 0,rgba(237,107,33,0) 70%);opacity:.22}
+    .path-label{color:var(--accent);font-weight:900;font-size:.8rem;letter-spacing:.13em;text-transform:uppercase}
+    .path h3{font-size:clamp(1.7rem,3vw,2.6rem);margin:22px 0 16px;max-width:450px}
+    .path p{color:var(--muted-dark);max-width:480px}
+    .path .link{display:inline-flex;margin-top:30px;color:var(--ink);text-decoration:none;font-weight:800;border-bottom:2px solid var(--accent)}
+
+    .method{background:#ebeae6}
+    .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:step}
+    .step{position:relative;padding:30px 26px 28px;background:#fff;border-radius:18px;box-shadow:0 12px 35px rgba(20,22,25,.06)}
+    .step:before{counter-increment:step;content:"0" counter(step);display:block;color:var(--accent);font-weight:900;letter-spacing:.08em;margin-bottom:30px}
+    .step p{color:var(--muted-dark);margin-top:14px}
+
+    .security{background:#fff}
+    .security-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:start}
+    .security-sticky{position:sticky;top:110px}
+    .security-sticky p{margin-top:24px;color:var(--muted-dark);font-size:1.08rem;max-width:480px}
+    .checks{border-top:1px solid #d7d8d9}
+    .check{display:grid;grid-template-columns:56px 1fr;gap:20px;padding:28px 0;border-bottom:1px solid #d7d8d9}
+    .check-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:#fff3eb;color:var(--accent-dark);font-weight:900;font-size:1.15rem}
+    .check p{color:var(--muted-dark);margin-top:8px}
+
+    .difference{padding:0 0 110px;background:#fff}
+    .difference-box{display:grid;grid-template-columns:1fr 1fr;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+    .difference-copy{padding:58px;background:var(--accent);color:#fff}
+    .difference-copy h2{font-size:clamp(2rem,4vw,3.5rem)}
+    .difference-copy p{margin-top:22px;font-size:1.08rem;max-width:480px}
+    .difference-list{padding:54px;background:#f3f5f6;color:var(--ink);display:grid;gap:20px}
+    .difference-item{display:flex;gap:14px;align-items:flex-start;color:#4f5962}
+    .difference-item b{color:var(--ink)}
+    .tick{color:var(--accent);font-weight:900}
+
+    .prices{background:#f0f2f4;color:var(--ink)}
+    .prices .section-intro>p{color:var(--muted-dark)}
+    .price-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
+    .main-price,.extras{border:1px solid #dcdfe2;border-radius:var(--radius);background:#fff;box-shadow:0 16px 46px rgba(25,32,38,.06)}
+    .main-price{padding:44px}
+    .main-price .amount{font-size:clamp(3rem,6vw,5.4rem);line-height:1;font-weight:900;letter-spacing:-.06em;margin:28px 0 16px}
+    .main-price .amount span{font-size:1rem;letter-spacing:0;color:#aeb3b9}
+    .main-price>p{color:var(--muted-dark);max-width:590px}
+    .included{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:34px}
+    .included div{padding:14px 16px;border-radius:12px;background:#f2f4f5;color:#323b43;font-size:.92rem}
+    .extras{padding:18px 30px}
+    .extra{display:flex;justify-content:space-between;gap:20px;padding:23px 0;border-bottom:1px solid #e0e2e4}
+    .extra:last-child{border-bottom:0}
+    .extra span{color:#626b74}
+    .extra strong{text-align:right}
+    .fineprint{margin-top:24px;color:#6e767e;font-size:.84rem}
+
+    .faq{background:#ebeae6}
+    .faq-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:70px}
+    details{border-bottom:1px solid #c9cbcd;padding:22px 0}
+    summary{display:flex;justify-content:space-between;align-items:center;gap:20px;cursor:pointer;list-style:none;font-weight:800;font-size:1.08rem}
+    summary::-webkit-details-marker{display:none}
+    summary:after{content:"+";font-size:1.6rem;color:var(--accent)}
+    details[open] summary:after{content:"−"}
+    details p{padding:15px 45px 0 0;color:var(--muted-dark)}
+
+    .contact{background:#fff}
+    .contact-card{position:relative;padding:70px;border:1px solid #eadfd6;border-radius:var(--radius);color:var(--ink);background:linear-gradient(130deg,#fff8f2,#fff);box-shadow:0 20px 60px rgba(45,36,28,.08);overflow:hidden}
+    .contact-card:after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;right:-180px;top:-170px;background:radial-gradient(circle,rgba(237,107,33,.56),rgba(237,107,33,0) 68%)}
+    .contact-card>*{position:relative;z-index:1}
+    .contact-card h2{max-width:780px}
+    .contact-card>p{margin:22px 0 32px;color:#55606a;max-width:650px;font-size:1.08rem}
+    .contact-actions{display:flex;flex-wrap:wrap;gap:12px}
+    .contact-meta{display:flex;flex-wrap:wrap;gap:25px;margin-top:40px;color:#69727b;font-size:.92rem}
+    .contact-meta a{text-decoration:none;color:var(--ink)}
+    footer{background:#e8eaec;color:#626b74;padding:34px 0;font-size:.84rem;border-top:1px solid #d9dcdf}
+    .footer-row{display:flex;justify-content:space-between;gap:30px;align-items:center}
+    .footer-row strong{color:var(--ink);letter-spacing:.08em}
+
+    @media(max-width:900px){
+      .menu{display:block}.navlinks{display:none;position:absolute;left:20px;right:20px;top:68px;padding:20px;background:#fff;border:1px solid #dfe2e4;box-shadow:0 18px 45px rgba(20,25,30,.12);border-radius:16px;flex-direction:column;align-items:stretch}.navlinks.open{display:flex}.navlinks .button{width:100%}
+      .proof-grid{grid-template-columns:1fr 1fr}.proof:nth-child(2){border-right:0}.proof:nth-child(-n+2){border-bottom:1px solid rgba(16,18,20,.1)}
+      .section-intro,.security-layout,.faq-grid{grid-template-columns:1fr;display:grid;gap:24px}.adv-grid{grid-template-columns:1fr 1fr}.timeline{grid-template-columns:1fr 1fr}.security-sticky{position:static}.price-grid{grid-template-columns:1fr}.difference-box{grid-template-columns:1fr}
+    }
+    @media(max-width:650px){
+      .container{width:min(100% - 28px,1180px)}section{padding:78px 0}.hero{min-height:820px;height:auto;padding:105px 0 195px}.hero:before{background:linear-gradient(90deg,rgba(250,251,252,.98),rgba(250,251,252,.72)),linear-gradient(0deg,rgba(250,251,252,.9),transparent 60%),url('hero-courtage.webp') 61% center/cover no-repeat}.hero .container{padding-top:0}.hero-actions .button{width:100%}.hero-proof{bottom:0}.proof{padding:15px 10px!important}.proof strong{font-size:.92rem}.proof span{font-size:.76rem}.adv-grid,.paths,.timeline{grid-template-columns:1fr}.adv-card{min-height:auto}.path{min-height:290px;padding:30px}.section-intro{margin-bottom:34px}.check{grid-template-columns:48px 1fr}.difference-copy,.difference-list,.main-price,.contact-card{padding:34px 26px}.included{grid-template-columns:1fr}.extras{padding:10px 24px}.extra{align-items:flex-start;flex-direction:column}.extra strong{text-align:left}.contact-actions .button{width:100%}.contact-meta{flex-direction:column;gap:8px}.footer-row{align-items:flex-start;flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button{transition:none}}
   </style>
 </head>
 <body>
   <header>
-    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;padding:10px 24px">
-      <div style="display:flex;align-items:center;gap:10px">
-        <img src="/logo.png" alt="LOCABAG" style="height:180px"/>
-        <span style="color:#cfcfcf">Automobiles</span>
+    <nav class="container" aria-label="Navigation principale">
+      <a class="brand" href="#accueil" aria-label="LOCABAG Automobiles, accueil"><img class="brand-logo" src="logo.png" alt="LOCABAG Automobiles"><span>Courtage automobile</span></a>
+      <button class="menu" type="button" aria-expanded="false" aria-controls="navlinks">Menu</button>
+      <div class="navlinks" id="navlinks">
+        <a href="#avantages">Vos avantages</a><a href="#methode">Notre méthode</a><a href="#tarifs">Tarifs</a><a href="#questions">Questions</a>
+        <a class="button button-primary" href="#contact">Parler de mon projet</a>
       </div>
-      <nav>
-        <a href="#catalogue">Catalogue</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
+    </nav>
   </header>
 
-  <section class="wrap" style="padding-top:28px">
-    <h1 style="font-size:40px;line-height:1.1;margin:0">LOCABAG Automobiles</h1>
-    <p style="color:#cfcfcf;font-size:18px;max-width:720px;margin-top:10px">Achat – vente – importation – conseils. Propositions claires, accompagnement de la vérification à la livraison, en France et en Allemagne.</p>
-    <div style="display:flex;gap:10px;margin-top:16px">
-      <a href="#catalogue" class="btn primary">Voir les véhicules</a>
-      <a href="#contact" class="btn">Demander une proposition</a>
-      <a href="mailto:contact@locabag.fr?subject=Demande%20de%20contact%20LOCABAG" class="btn">Écrire un email</a>
-    </div>
-  </section>
+  <main>
+    <section class="hero" id="accueil">
+      <div class="container"><div class="hero-copy">
+        <p class="eyebrow">Courtier automobile indépendant</p>
+        <h1>Votre prochain véhicule, <em>recherché et sécurisé</em> pour vous.</h1>
+        <p class="hero-lead">LOCABAG vous accompagne de la définition de votre besoin jusqu’à la mise à disposition du véhicule. France, Allemagne et Europe : vous choisissez, nous vérifions et nous organisons.</p>
+        <div class="hero-actions"><a class="button button-primary" href="#contact">Confier ma recherche <span class="arrow">→</span></a><a class="button button-ghost" href="#methode">Découvrir la méthode</a></div>
+      </div></div>
+      <div class="hero-proof"><div class="container proof-grid">
+        <div class="proof"><strong>Depuis 2017</strong><span>Expérience automobile</span></div><div class="proof"><strong>Marché européen</strong><span>Davantage d’opportunités</span></div><div class="proof"><strong>Paiement direct</strong><span>Au fournisseur du véhicule</span></div><div class="proof"><strong>Interlocuteur unique</strong><span>Du besoin à la remise des clés</span></div>
+      </div></div>
+    </section>
 
-  <section id="catalogue" class="wrap" style="padding-top:20px">
-    <div style="display:flex;align-items:end;justify-content:space-between">
+    <section class="advantages" id="avantages"><div class="container">
+      <div class="section-intro"><div><p class="eyebrow">Pourquoi un courtier automobile ?</p><h2>Acheter mieux, avec les bonnes informations.</h2></div><p>Le rôle de LOCABAG est de défendre votre projet d’achat : élargir la recherche, contrôler les points essentiels et vous éviter les démarches les plus complexes.</p></div>
+      <div class="adv-grid">
+        <article class="adv-card"><div class="num">01</div><h3>Un marché beaucoup plus large</h3><p>Nous recherchons en France et en Europe pour comparer davantage de véhicules, de configurations et de niveaux de prix.</p></article>
+        <article class="adv-card"><div class="num">02</div><h3>Du temps réellement gagné</h3><p>Tri des annonces, échanges avec les vendeurs, demandes de documents et suivi : nous centralisons les démarches pour vous.</p></article>
+        <article class="adv-card"><div class="num">03</div><h3>Une analyse avant décision</h3><p>Historique, entretien, kilométrage, état, équipements et cohérence de l’offre sont étudiés avant votre engagement.</p></article>
+        <article class="adv-card"><div class="num">04</div><h3>Un achat à distance encadré</h3><p>Identité du fournisseur, contrat, coordonnées bancaires et documents du véhicule sont vérifiés pour sécuriser la transaction.</p></article>
+        <article class="adv-card"><div class="num">05</div><h3>Une négociation transparente</h3><p>Nous échangeons avec le vendeur pour obtenir les meilleures conditions possibles. Toute remise obtenue vous revient intégralement.</p></article>
+        <article class="adv-card"><div class="num">06</div><h3>Un accompagnement complet</h3><p>Transport, immatriculation provisoire, formalités fiscales, carte grise et garantie peuvent être organisés selon votre besoin.</p></article>
+      </div>
+    </div></section>
+
+    <section class="start"><div class="container">
+      <div class="section-intro"><div><p class="eyebrow">Deux façons de démarrer</p><h2>Vous gardez toujours la décision.</h2></div><p>LOCABAG intervient aussi bien sur une annonce déjà repérée que sur une recherche complète à partir de vos critères.</p></div>
+      <div class="paths">
+        <article class="path"><p class="path-label">Option 1</p><h3>Vous avez déjà trouvé une annonce</h3><p>Transmettez-nous le lien. Nous passons directement à la vérification du vendeur, du véhicule, de ses documents et des conditions de vente.</p><a class="link" href="#contact">Faire vérifier une annonce</a></article>
+        <article class="path"><p class="path-label">Option 2</p><h3>Vous nous confiez votre recherche</h3><p>Modèle, budget, kilométrage, énergie, transmission, équipements : nous ciblons les opportunités qui correspondent réellement à votre projet.</p><a class="link" href="#contact">Décrire mon véhicule idéal</a></article>
+      </div>
+    </div></section>
+
+    <section class="method" id="methode"><div class="container">
+      <div class="section-intro"><div><p class="eyebrow">Notre méthode</p><h2>Quatre étapes, un seul interlocuteur.</h2></div><p>Un parcours lisible et documenté, depuis les premiers critères jusqu’à l’arrivée du véhicule.</p></div>
+      <div class="timeline">
+        <article class="step"><h3>Recherche ciblée</h3><p>Sélection des annonces selon votre modèle, votre budget, le kilométrage, les équipements et la provenance.</p></article>
+        <article class="step"><h3>Vérifications</h3><p>Contrôle du fournisseur, de l’état, de l’entretien, des consommables, du kilométrage et des documents.</p></article>
+        <article class="step"><h3>Contrat & décision</h3><p>Analyse du contrat, des conditions, des options, de l’immatriculation et des coordonnées bancaires avant accord.</p></article>
+        <article class="step"><h3>Achat & mise à disposition</h3><p>Paiement direct au fournisseur puis organisation de l’enlèvement, du transport, de la mise à disposition en Alsace ou de la livraison.</p></article>
+      </div>
+    </div></section>
+
+    <section class="security"><div class="container security-layout">
+      <div class="security-sticky"><p class="eyebrow">Ce que nous sécurisons</p><h2>Un achat clair, vérifié et traçable.</h2><p>Nous ne nous contentons pas de trouver une voiture : nous recoupons les informations utiles avant que vous ne preniez votre décision.</p></div>
+      <div class="checks">
+        <div class="check"><div class="check-icon">✓</div><div><h3>Le fournisseur</h3><p>Identité, réputation, expérience, cohérence de l’annonce et informations recueillies auprès de notre réseau professionnel.</p></div></div>
+        <div class="check"><div class="check-icon">✓</div><div><h3>Le véhicule</h3><p>État intérieur et extérieur, pneus, freins, suspensions, entretien, consommables et cohérence kilométrique.</p></div></div>
+        <div class="check"><div class="check-icon">✓</div><div><h3>Les documents</h3><p>Contrat, certificat d’immatriculation, contrôle technique, certificat de conformité et pièces nécessaires à la transaction.</p></div></div>
+        <div class="check"><div class="check-icon">✓</div><div><h3>Le budget global</h3><p>Prix du véhicule, transport, honoraires, formalités et éventuels malus sont distingués pour vous donner une vision d’ensemble.</p></div></div>
+      </div>
+    </div></section>
+
+    <section class="difference"><div class="container difference-box">
+      <div class="difference-copy"><p class="eyebrow" style="color:#fff">La différence LOCABAG</p><h2>Vous achetez le véhicule. Nous défendons votre projet.</h2><p>LOCABAG agit comme intermédiaire indépendant. Le contrat de vente et le paiement du véhicule sont conclus directement avec le fournisseur.</p></div>
+      <div class="difference-list">
+        <div class="difference-item"><span class="tick">✓</span><span><b>Pas de stock à écouler :</b> la recherche part de vos critères.</span></div>
+        <div class="difference-item"><span class="tick">✓</span><span><b>Une rémunération annoncée :</b> les honoraires sont distincts du prix du véhicule.</span></div>
+        <div class="difference-item"><span class="tick">✓</span><span><b>Une remise qui reste la vôtre :</b> toute réduction obtenue auprès du fournisseur vous est rétrocédée.</span></div>
+        <div class="difference-item"><span class="tick">✓</span><span><b>Une relation directe :</b> vous réglez le vendeur du véhicule sans transit du prix d’achat par LOCABAG.</span></div>
+      </div>
+    </div></section>
+
+    <section class="prices" id="tarifs"><div class="container">
+      <div class="section-intro"><div><p class="eyebrow">Des tarifs lisibles</p><h2>Construisez votre budget sans mauvaise surprise.</h2></div><p>Les prestations LOCABAG s’ajoutent au prix du véhicule. Les options sont retenues uniquement selon votre projet.</p></div>
+      <div class="price-grid">
+        <div class="main-price"><p class="eyebrow">Courtage automobile</p><div class="amount">1 790 € <span>TTC</span></div><p>Prestation complète de recherche, sélection, analyse, négociation et accompagnement jusqu’à l’acquisition du véhicule.</p><div class="included"><div>✓ Définition des critères</div><div>✓ Sélection des annonces</div><div>✓ Analyse du véhicule</div><div>✓ Vérification du vendeur</div><div>✓ Échanges et négociation</div><div>✓ Accompagnement à l’achat</div></div></div>
+        <div class="extras">
+          <div class="extra"><span>Transport Allemagne → Alsace</span><strong>790 € TTC</strong></div>
+          <div class="extra"><span>Immatriculation provisoire</span><strong>100 € TTC</strong></div>
+          <div class="extra"><span>Quitus fiscal + dossier d’immatriculation définitive</span><strong>240 € TTC</strong></div>
+          <div class="extra"><span>Garantie véhicule d’occasion</span><strong>Dès 450 € / an</strong></div>
+          <div class="extra"><span>Livraison à domicile</span><strong>Sur devis</strong></div>
+        </div>
+      </div>
+      <p class="fineprint">Le coût de la carte grise définitive et les éventuels malus CO₂ ou malus au poids ne sont pas inclus. Le transport varie selon le lieu d’enlèvement. LOCABAG ne propose ni reprise ni financement.</p>
+    </div></section>
+
+    <section class="faq" id="questions"><div class="container faq-grid">
+      <div><p class="eyebrow">Questions fréquentes</p><h2>Avant de nous confier votre recherche.</h2></div>
       <div>
-        <h2 style="font-size:28px;margin:0 0 6px 0">Catalogue</h2>
-        <div style="color:#cfcfcf">Sélection récente. Fiches PDF et galerie photos.</div>
+        <details><summary>LOCABAG vend-il directement le véhicule ?</summary><p>Non. LOCABAG agit comme intermédiaire. Le contrat de vente est conclu entre vous et le fournisseur, et le prix du véhicule est réglé directement sur le compte de ce fournisseur.</p></details>
+        <details><summary>Puis-je vous contacter avec une annonce déjà trouvée ?</summary><p>Oui. Envoyez-nous le lien de l’annonce. Nous pouvons démarrer par la vérification du vendeur, du véhicule, des documents et du contrat proposé.</p></details>
+        <details><summary>Dans quels pays recherchez-vous ?</summary><p>Nous travaillons principalement en France, en Allemagne, en Belgique, au Luxembourg et en Suisse, avec la possibilité d’étendre la recherche à d’autres marchés européens selon le véhicule.</p></details>
+        <details><summary>La négociation est-elle comprise ?</summary><p>Oui. Nous négocions lorsque l’offre et la situation le permettent. Toute remise accordée par le fournisseur est intégralement répercutée au client.</p></details>
+        <details><summary>Le transport et l’immatriculation sont-ils obligatoires ?</summary><p>Non. Ces prestations sont adaptées au projet. Nous vous indiquons clairement ce qui est compris, ce qui est optionnel et ce qui devra être payé séparément.</p></details>
       </div>
-      <a href="#contact" style="color:var(--brand);text-decoration:none;font-size:14px">Vous cherchez un modèle précis ?</a>
-    </div>
+    </div></section>
 
-    <div class="grid cols-3" style="margin-top:18px">
-      <!-- Q3 -->
-      <div class="card">
-        <div class="p3">
-          <div class="carousel" data-key="q3">
-            <img src="/q3-1.jpg" alt="Audi Q3 45 TFSI e">
-            <button class="nav l" aria-label="Précédent">‹</button>
-            <button class="nav r" aria-label="Suivant">›</button>
-            <div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          </div>
-        </div>
-        <div class="p5">
-          <div style="display:flex;justify-content:space-between;gap:8px">
-            <div class="title">Audi Q3 Sportback 45 TFSI e S tronic</div>
-            <div class="price">35 742,36 € TTC</div>
-          </div>
-          <div class="meta" style="margin-top:6px">05/2022 • 86 900 km • Hybride 245 ch – S tronic</div>
-          <div style="display:flex;gap:10px;margin-top:12px">
-            <a class="btn primary" href="#contact">Demander la fiche</a>
-            <a class="btn" href="/q3.pdf" target="_blank">Télécharger PDF</a>
-          </div>
-        </div>
-      </div>
+    <section class="contact" id="contact"><div class="container contact-card">
+      <p class="eyebrow">Votre projet commence ici</p><h2>Parlons du véhicule que vous recherchez.</h2><p>Préparez simplement votre budget, le modèle souhaité, le kilométrage maximal et vos équipements indispensables. Nous vous expliquons ensuite la démarche.</p>
+      <div class="contact-actions"><a class="button button-primary" href="tel:+33687575287">Appeler le 06 87 57 52 87</a><a class="button button-ghost" href="https://wa.me/33687575287?text=Bonjour%20Pascal%2C%20je%20souhaite%20vous%20parler%20de%20ma%20recherche%20de%20v%C3%A9hicule." target="_blank" rel="noopener">Écrire sur WhatsApp</a></div>
+      <div class="contact-meta"><span><a href="mailto:locabag@orange.fr">locabag@orange.fr</a></span><span>Durrenbach (67) — Alsace</span><span>Recherche en France et en Europe</span></div>
+    </div></section>
+  </main>
 
-      <!-- G500 -->
-      <div class="card">
-        <div class="p3">
-          <div class="carousel" data-key="g500">
-            <img src="/g500-1.jpg" alt="Mercedes G 500">
-            <button class="nav l" aria-label="Précédent">‹</button>
-            <button class="nav r" aria-label="Suivant">›</button>
-            <div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          </div>
-        </div>
-        <div class="p5">
-          <div style="display:flex;justify-content:space-between;gap:8px">
-            <div class="title">Mercedes‑Benz G 500 AMG Line Manufaktur</div>
-            <div class="price">134 960 € TTC</div>
-          </div>
-          <div class="meta" style="margin-top:6px">02/2020 • 67 600 km • V8 422 ch – 9G‑Tronic</div>
-          <div style="display:flex;gap:10px;margin-top:12px">
-            <a class="btn primary" href="#contact">Demander la fiche</a>
-            <a class="btn" href="/g500.pdf" target="_blank">Télécharger PDF</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Vivaro -->
-      <div class="card">
-        <div class="p3">
-          <div class="carousel" data-key="vivaro">
-            <img src="/vivaro-1.jpg" alt="Opel Vivaro L2H1">
-            <button class="nav l" aria-label="Précédent">‹</button>
-            <button class="nav r" aria-label="Suivant">›</button>
-            <div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          </div>
-        </div>
-        <div class="p5">
-          <div style="display:flex;justify-content:space-between;gap:8px">
-            <div class="title">Opel Vivaro B L2H1 2,9t • 125 ch</div>
-            <div class="price">12 422,60 € TTC</div>
-          </div>
-          <div class="meta" style="margin-top:6px">10/2017 • 126 900 km • 1.6 CDTI – BVM6</div>
-          <div style="display:flex;gap:10px;margin-top:12px">
-            <a class="btn primary" href="#contact">Demander la fiche</a>
-            <a class="btn" href="/vivaro.pdf" target="_blank">Télécharger PDF</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Qashqai -->
-      <div class="card">
-        <div class="p3">
-          <div class="carousel" data-key="qashqai">
-            <img src="/qashqai-1.jpg" alt="Nissan Qashqai N-Way">
-            <button class="nav l" aria-label="Précédent">‹</button>
-            <button class="nav r" aria-label="Suivant">›</button>
-            <div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          </div>
-        </div>
-        <div class="p5">
-          <div style="display:flex;justify-content:space-between;gap:8px">
-            <div class="title">Nissan Qashqai N-Way 1.7 dCi 4WD</div>
-            <div class="price">22 634,36 € TTC</div>
-          </div>
-          <div class="meta" style="margin-top:6px">03/2020 • 78 900 km • Diesel 4x4</div>
-          <div style="display:flex;gap:10px;margin-top:12px">
-            <a class="btn primary" href="#contact">Demander la fiche</a>
-            <a class="btn" href="/qashqai.pdf" target="_blank">Télécharger PDF</a>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- Aston Martin DB9 -->
-      <div class="card">
-        <div class="p3">
-          <div class="carousel" data-key="db9">
-            <img src="/db9-1.jpg" alt="Aston Martin DB9 Coupé 6.0 V12">
-            <button class="nav l" aria-label="Précédent">‹</button>
-            <button class="nav r" aria-label="Suivant">›</button>
-            <div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          </div>
-        </div>
-        <div class="p5">
-          <div style="display:flex;justify-content:space-between;gap:8px">
-            <div class="title">Aston Martin DB9 Coupé 6.0 V12 Touchtronic</div>
-            <div class="price">59 980 € TTC</div>
-          </div>
-          <div class="meta" style="margin-top:6px">2006 • 60 930 km • Essence • Automatique • 457 ch</div>
-          <div style="display:flex;gap:10px;margin-top:12px">
-            <a class="btn primary" href="#contact">Demander la fiche</a>
-            <a class="btn" href="/db9.pdf" target="_blank">Télécharger PDF</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Toyota Yaris Cross Trail -->
-<div class="card">
-  <div class="p3">
-   <div class="carousel" data-key="yariscross">
-  <img src="/yariscross-1.jpg" alt="Toyota Yaris Cross Trail">
-  <button class="nav l" aria-label="Précédent">‹</button>
-  <button class="nav r" aria-label="Suivant">›</button>
-  <div class="dots">
-    <span class="dot active"></span>
-    <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
-    <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
-    <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
-    <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
-  </div>
-</div>
-  </div>
-  <div class="p5">
-    <div style="display:flex;justify-content:space-between;gap:8px">
-      <div class="title">Toyota Yaris Cross 1.5 Hybrid AWD-i Trail</div>
-      <div class="price">24 490 € TTC</div>
-    </div>
-
-    <div class="meta" style="margin-top:6px">
-      2023 • 8 300 km • Hybride • Automatique • AWD-i • Crit’Air 1
-    </div>
-
-    <div class="meta" style="margin-top:6px">
-      1ère main • Garantie constructeur jusqu’au 06/03/2026 ou 100 000 km
-    </div>
-
-    <div style="display:flex;gap:10px;margin-top:12px">
-      <a class="btn primary" href="#contact">Demander la fiche</a>
-      <a class="btn" href="/yariscross.pdf" target="_blank">Télécharger PDF</a>
-    </div>
-  </div>
-</div>
-      
-    </div>
-  </section>
-
-  <section id="contact" class="wrap" style="padding:28px 24px 40px">
-    <h2 style="font-size:28px;margin:0 0 8px 0">Contact</h2>
-    <div style="color:#cfcfcf;margin-bottom:8px">Dites‑moi ce que vous recherchez. Réponse rapide.</div>
-    <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px">
-      <form id="contactForm">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          <input placeholder="Nom" required style="background:#121212;border:1px solid #262626;border-radius:12px;padding:12px;color:#fff">
-          <input placeholder="Téléphone" style="background:#121212;border:1px solid #262626;border-radius:12px;padding:12px;color:#fff">
-          <input type="email" placeholder="Email" required style="grid-column:1/3;background:#121212;border:1px solid #262626;border-radius:12px;padding:12px;color:#fff">
-          <textarea rows="5" placeholder="Votre message" required style="grid-column:1/3;background:#121212;border:1px solid #262626;border-radius:12px;padding:12px;color:#fff"></textarea>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;margin-top:12px">
-          <button class="btn primary" type="submit">Envoyer par email</button>
-          <span style="font-size:12px;color:#9a9a9a">En cliquant, vous acceptez d'être recontacté par LOCABAG.</span>
-          <a href="mailto:contact@locabag.fr" style="font-size:12px;color:var(--brand);text-decoration:none">Ou écrire directement à contact@locabag.fr</a>
-        </div>
-      </form>
-      <div class="card p5">
-        <div class="title" style="margin-bottom:8px">Coordonnées</div>
-        <div class="meta">Bas‑Rhin (67), France – interventions transfrontalières Allemagne.</div>
-        <div style="margin-top:8px">📞 +33 6 87 57 52 87</div>
-        <div>✉️ contact@locabag.fr<br><span style="color:#9a9a9a;font-size:12px">(ou : locabag@orange.fr)</span></div>
-        <div>📍 4 Grand Rue, 67360 Durrenbach</div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="wrap" style="padding:18px 24px">© <span id="y"></span> LOCABAG Automobiles — Mentions légales • Confidentialité.</div>
-  </footer>
-
- <script>
-  document.getElementById('y').textContent = new Date().getFullYear();
-
-  const sets = {
-    q3: ["/q3-1.jpg", "/q3-2.jpg", "/q3-3.jpg", "/q3-4.jpg", "/q3-5.jpg", "/q3-6.jpg", "/q3-7.jpg", "/q3-8.jpg"],
-    g500: ["/g500-1.jpg", "/g500-2.jpg", "/g500-3.jpg", "/g500-4.jpg", "/g500-5.jpg", "/g500-6.jpg", "/g500-7.jpg", "/g500-8.jpg"],
-    vivaro: ["/vivaro-1.jpg", "/vivaro-2.jpg", "/vivaro-3.jpg", "/vivaro-4.jpg", "/vivaro-5.jpg", "/vivaro-6.jpg", "/vivaro-7.jpg", "/vivaro-8.jpg"],
-    qashqai: ["/qashqai-1.jpg", "/qashqai-2.jpg", "/qashqai-3.jpg", "/qashqai-4.jpg", "/qashqai-5.jpg", "/qashqai-6.jpg", "/qashqai-7.jpg", "/qashqai-8.jpg", "/qashqai-9.jpg", "/qashqai-10.jpg", "/qashqai-11.jpg", "/qashqai-12.jpg", "/qashqai-13.jpg", "/qashqai-14.jpg", "/qashqai-15.jpg", "/qashqai-16.jpg", "/qashqai-17.jpg", "/qashqai-18.jpg", "/qashqai-19.jpg", "/qashqai-20.jpg"],
-    db9: ["/db9-1.jpg", "/db9-2.jpg", "/db9-3.jpg", "/db9-4.jpg", "/db9-5.jpg", "/db9-6.jpg", "/db9-7.jpg", "/db9-8.jpg", "/db9-9.jpg", "/db9-10.jpg", "/db9-11.jpg", "/db9-12.jpg", "/db9-13.jpg", "/db9-14.jpg"],
-
-    // ✅ AJOUT YARIS CROSS (20 photos)
-    yariscross: [
-      "/yariscross-1.jpg","/yariscross-2.jpg","/yariscross-3.jpg","/yariscross-4.jpg","/yariscross-5.jpg",
-      "/yariscross-6.jpg","/yariscross-7.jpg","/yariscross-8.jpg","/yariscross-9.jpg","/yariscross-10.jpg",
-      "/yariscross-11.jpg","/yariscross-12.jpg","/yariscross-13.jpg","/yariscross-14.jpg","/yariscross-15.jpg",
-      "/yariscross-16.jpg","/yariscross-17.jpg","/yariscross-18.jpg","/yariscross-19.jpg","/yariscross-20.jpg"
-    ]
-  };
-
-  document.querySelectorAll('.carousel').forEach(c => {
-    const key = c.dataset.key;
-    const imgs = sets[key];
-
-    // ✅ sécurité: si pas trouvé, on ne plante pas
-    if (!imgs || !imgs.length) return;
-
-    let idx = 0;
-    const img = c.querySelector('img');
-    const dots = c.querySelectorAll('.dot');
-
-    const set = (i) => {
-      idx = (i + imgs.length) % imgs.length;
-      img.src = imgs[idx];
-      if (dots && dots.length) dots.forEach((d, j) => d.classList.toggle('active', j === idx));
-    };
-
-    c.querySelector('.nav.l')?.addEventListener('click', () => set(idx - 1));
-    c.querySelector('.nav.r')?.addEventListener('click', () => set(idx + 1));
-
-    // ✅ important : initialise l'affichage
-    set(0);
-  });
-  // --- Contact form: envoi via mailto (ouvre le client mail) ---
-  const form = document.getElementById('contactForm');
-  if (form) {
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-
-      const fields = form.querySelectorAll('input, textarea');
-      const name = fields[0]?.value?.trim() || "";
-      const phone = fields[1]?.value?.trim() || "";
-      const email = fields[2]?.value?.trim() || "";
-      const message = fields[3]?.value?.trim() || "";
-
-      const to = "contact@locabag.fr";
-      const subject = encodeURIComponent("Demande de contact LOCABAG");
-      const body = encodeURIComponent(
-        `Nom: ${name}\nTéléphone: ${phone}\nEmail: ${email}\n\nMessage:\n${message}\n`
-      );
-
-      // ouvre le client mail
-      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-    });
-  }
-
-</script>
+  <footer><div class="container footer-row"><strong>LOCABAG AUTOMOBILES</strong><span>Courtage, accompagnement et sécurisation de votre achat automobile en Europe.</span><span>© 2026 LOCABAG</span></div></footer>
+  <script>
+    const menu=document.querySelector('.menu'),links=document.querySelector('.navlinks');
+    menu.addEventListener('click',()=>{const open=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(open))});
+    links.addEventListener('click',e=>{if(e.target.closest('a')){links.classList.remove('open');menu.setAttribute('aria-expanded','false')}});
+  </script>
 </body>
 </html>
-
